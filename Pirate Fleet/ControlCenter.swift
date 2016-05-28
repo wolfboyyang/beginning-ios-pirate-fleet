@@ -36,8 +36,8 @@ class ControlCenter {
         human.addShipToGrid(largeShip)
         human.addShipToGrid(xlargeShip)
         
-        let mine1 = Mine(location: GridLocation(x:0, y:1), explosionText: "Bang!!!")
-        let mine2 = Mine(location: GridLocation(x:4, y:3), explosionText: "Bang!!!")
+        let mine1 = Mine(location: GridLocation(x:0, y:1), explosionText: Settings.DefaultMineText)
+        let mine2 = Mine(location: GridLocation(x:4, y:3), explosionText: Settings.DefaultMineText)
         human.addMineToGrid(mine1)
         human.addMineToGrid(mine2)
     }
@@ -45,9 +45,14 @@ class ControlCenter {
     func calculateFinalScore(gameStats: GameStats) -> Int {
         
         var finalScore: Int
+        // finalScore = (enemyShipsSunk * sinkBonus) + 
+        //              (humanShipsRemaining * shipBonus) -
+        //              (numberOfGuesses * guessPenalty)
+        finalScore = (5-gameStats.enemyShipsRemaining)*gameStats.sinkBonus +
+            (5-gameStats.humanShipsSunk) * gameStats.shipBonus -
+            (gameStats.numberOfHitsOnEnemy+gameStats.numberOfMissesByHuman)*gameStats.guessPenalty
         
-        finalScore = 0                
-        
+        print("the value of final score is \(finalScore)")
         return finalScore
     }
 }
