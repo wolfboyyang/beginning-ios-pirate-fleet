@@ -20,7 +20,16 @@ struct Ship {
 class ControlCenter {
     
     func addShipsAndMines(human: Human) {
-        <#WRITE YOUR CODE HERE!#>
+        let smallShip   = Ship(length: 2, location: GridLocation(x:0, y:0), isVertical: false)
+        let mediumShip1 = Ship(length: 3, location: GridLocation(x:0, y:2), isVertical: false)
+        let mediumShip2 = Ship(length: 3, location: GridLocation(x:4, y:4), isVertical: true)
+        let largeShip   = Ship(length: 4, location: GridLocation(x:2, y:7), isVertical: false)
+        let xlargeShip  = Ship(length: 5, location: GridLocation(x:6, y:2), isVertical: true)
+        human.addShipToGrid(smallShip)
+        human.addShipToGrid(mediumShip1)
+        human.addShipToGrid(mediumShip2)
+        human.addShipToGrid(largeShip)
+        human.addShipToGrid(xlargeShip)
     }
     
     func calculateFinalScore(gameStats: GameStats) -> Int {
