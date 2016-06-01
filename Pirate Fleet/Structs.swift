@@ -21,25 +21,9 @@ struct GridCell {
     let location: GridLocation
     let view: UIView
     var containsObject: Bool
-    var mine: _Mine_?
-    var metaShip: MetaShip?
-}
-
-// MARK: - MetaShip
-
-class MetaShip {
-    var cells: [GridLocation] = []
-    var cellsHit: [GridLocation: Bool] = [:]
-    var sunk: Bool {
-        get {
-            for (_, hit) in cellsHit {
-                if hit == false {
-                    return false
-                }
-            }
-            return true
-        }
-    }
+    var mine: Mine?
+    var ship: Ship?
+    var seamonster: SeaMonster?
 }
 
 // MARK: - GameStats
@@ -52,4 +36,10 @@ struct GameStats {
     let sinkBonus: Int
     let shipBonus: Int
     let guessPenalty: Int
+}
+
+// MARK: - HitTracker
+
+class HitTracker {
+    var cellsHit: [GridLocation: Bool] = [:]
 }
